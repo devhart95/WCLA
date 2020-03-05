@@ -63,7 +63,7 @@ byutable <- BYU2020.2 %>%
   select(c(`Stat`, `UCONN`, `TEXAS`, `MICHSTATE`, `CU`, `CSU`)) %>%
   mutate (Average = round(rowMeans(
     cbind(`UCONN`, `TEXAS`, `MICHSTATE`, `CU`, `CSU`), na.rm=T),0), 
-    `Improvement` = round((`CSU`-`UCONN`)/`UCONN`*100,2))  
+    `Improvement` = round((`CSU`-`UCONN`)/`UCONN`*100,0))  
 
 improvement_formatter <- 
   formatter("span", 
@@ -72,7 +72,7 @@ improvement_formatter <-
               color = ifelse(x > 0, customGreen, ifelse(x < 0, customRed, "black"))))
 
 
-formattable(byutable, align =c("l","c","c","c","c", "c", "c", "c", "r"), list(
+byuoffenses <- formattable(byutable, align =c("l","c","c","c","c", "c", "c", "c", "r"), list(
   `Stat` = formatter("span", style = ~ style(color = "grey",font.weight = "bold")), 
   `UCONN`= color_tile(customGreen, customGreen0),
   `TEXAS`= color_tile(customGreen, customGreen0),
