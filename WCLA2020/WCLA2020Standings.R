@@ -78,6 +78,22 @@ WCLA2020 <- rbind(wwllcentral, wwllsouth, wwllnorth,
                   virginiaconf, carolinaconf, delawareconf,
                   swlleast, swllsouth, swllwest,
                   newelleast, newellwest)
+WCLA2020$Goalratio <- WCLA2020$GF / WCLA2020$GA
+WCLA2020$tg <- sum(WCLA2020$W, WCLA2020$L)
+
+#Create graph for entire league goals for and goals against
+WCLAGA <- sum(WCLA2020$GA)
+WCLAGF <- sum(WCLA2020$GF)
+WCLAgratio <- data.frame(WCLAGA, WCLAGF)
+WCLAgratio$League <- "League"
+
+WCLAgratio <- WCLAgratio %>%
+  rename("Goals Against" = WCLAGA,
+         "Goals For" = WCLAGF)
+
+ggplot(WCLAgratio, aes(x = League, y = , fill = Stat)) +
+  geom_col(position = "dodge")
 
 #Show goals so far
-
+WCLAgoalratio <- WCLA2020 %>% arrange(desc(Goalperc))
+WCLAgoalsagainst <- WCLA2020 %>% arrange(desc(GA))
