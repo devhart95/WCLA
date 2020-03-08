@@ -90,4 +90,4 @@ ggplot(WCLAgoalratios, aes(x = Year, y = Total, fill = Stat)) +
   geom_text(aes(label=Total), position=position_dodge(width=0.9), vjust=-0.25) +
   ylim(0, 9000)+
   coord_flip()+
-  ggtitle("WCLA Goal Patterns by Season")
+  ggtitle("WCLA Goal Patterns by Season (Free Movement)")
