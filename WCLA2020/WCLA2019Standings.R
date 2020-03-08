@@ -64,6 +64,8 @@ WCLA2019 <- rbind(chesapeake, delmarva, newelleast2019,
 WCLA2019$Year <- 2019
 WCLA2020$Year <- 2020
 WCLAcompare <- rbind(WCLA2019, WCLA2020)
+WCLA2019$GP <- WCLA2019$W + WCLA2019$L
+WCLA2020$GP <- WCLA2020$W + WCLA2020$L
 
 WCLAgoalratios <- WCLAcompare %>%
   group_by(Year) %>%
@@ -87,4 +89,5 @@ ggplot(WCLAgoalratios, aes(x = Year, y = Total, fill = Stat)) +
   scale_x_continuous(breaks = 0:2100) +
   geom_text(aes(label=Total), position=position_dodge(width=0.9), vjust=-0.25) +
   ylim(0, 9000)+
-  coord_flip()
+  coord_flip()+
+  ggtitle("WCLA Goal Patterns by Season")
